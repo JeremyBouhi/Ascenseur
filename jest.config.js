@@ -10,6 +10,9 @@ module.exports = {
     testMatch: [
         '<rootDir>/tests/**/*.spec.ts'
     ],
+    transform: {
+        '^.+\\.ts$': 'ts-jest'
+    },
     coverageDirectory: '<rootDir>/test/coverage',
     collectCoverageFrom: [
         'src/**/*.{ts,vue}',

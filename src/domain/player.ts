@@ -1,5 +1,11 @@
 export class Player {
-    constructor (readonly name: string,
-                 readonly points: number) {
+    private readonly score
+
+    constructor (readonly name: string) {
+        this.score = 0
+    }
+
+    getScore(): number {
+        return this.score
     }
 }
