@@ -1,5 +1,5 @@
 export class Player {
-    private readonly score
+    private score: number
 
     constructor (readonly name: string) {
         this.score = 0
@@ -7,5 +7,9 @@ export class Player {
 
     getScore(): number {
         return this.score
+    }
+
+    updateScore (points: number) {
+        this.score += points
     }
 }
