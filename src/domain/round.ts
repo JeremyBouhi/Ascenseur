@@ -13,7 +13,7 @@ export class Round {
         this.bets = bets
     }
 
-    end(tricksOfEachPlayer: Map<Player, number>) {
+    end(tricksOfEachPlayer: Map<Player, number>): void {
         if(this.bets === undefined) {
             throw new Error(`Les mises n'ont pas été définies`)
         }

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest tests/**/*.spec.ts"
+    "start": "ts-node src/index.ts",
+    "test": "jest tests/**/*.spec.ts",
+    "coverage": "jest --collect-coverage"
   },
   "keywords": [],
   "author": "",

@@ -13,7 +13,7 @@ module.exports = {
     transform: {
         '^.+\\.ts$': 'ts-jest'
     },
-    coverageDirectory: '<rootDir>/test/coverage',
+    coverageDirectory: '<rootDir>/tests/coverage',
     collectCoverageFrom: [
         'src/**/*.{ts,vue}',
         '!**/node_modules/**'

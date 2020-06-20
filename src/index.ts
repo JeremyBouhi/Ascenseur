@@ -25,3 +25,7 @@ tricks.set(arsi, 0)
 tricks.set(jeje, 1)
 round.end(tricks)
 
+console.log(soso.getScore())
+console.log(arsi.getScore())
+console.log(jeje.getScore())
+

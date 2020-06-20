@@ -9,4 +9,8 @@ export class Game {
             player.updateScore(pointsByRound.get(player))
         })
     }
+
+    run () {
+        // Lancer des rounds tant que ?
+    }
 }
