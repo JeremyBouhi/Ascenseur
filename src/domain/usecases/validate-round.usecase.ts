@@ -1,7 +1,7 @@
-import { Game } from '../domain/game'
-import { Player } from '../domain/player'
-import { Referee } from '../domain/referee'
-import { Round } from '../domain/round'
+import { Game } from '../game'
+import { Player } from '../player'
+import { Referee } from '../referee'
+import { Round } from '../round'
 
 export class ValidateRound {
 
