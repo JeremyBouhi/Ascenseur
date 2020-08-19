@@ -5,11 +5,21 @@ import { Round } from '../round'
 
 export class ValidateRound {
 
-    execute(game: Game, bets: Map<Player, number>, tricks: Map<Player, number>): void {
+    execute(game: Game, betsFromRequest: object[], tricksFromRequest: object[]): void {
         const referee = new Referee()
         const round = new Round(game, referee)
 
+        const bets = new Map<Player, number>()
+        const tricks = new Map<Player, number>()
+
+        game.players.forEach((player: Player) => {
+            bets.set(player, betsFromRequest[player.name])
+            tricks.set(player, tricksFromRequest[player.name])
+        })
+
         round.start(bets)
-        round.end(tricks)
+        const pointsOfEachPlayer = round.end(tricks)
+        game.setPlayersScore(pointsOfEachPlayer)
+        game.save()
     }
 }

@@ -13,7 +13,7 @@ export class Round {
         this.bets = bets
     }
 
-    end(tricksOfEachPlayer: Map<Player, number>): void {
+    end(tricksOfEachPlayer: Map<Player, number>): Map<Player, number> {
         if(this.bets === undefined) {
             throw new Error(`Les mises n'ont pas été définies`)
         }
@@ -22,7 +22,6 @@ export class Round {
         this.bets.forEach((bet: number, player: Player) => {
             pointsOfEachPlayer.set(player, this.referee.computeNumberOfPointsForEachRound(bet, tricksOfEachPlayer.get(player)))
         })
-
-        this.game.setPlayersScore(pointsOfEachPlayer)
+        return pointsOfEachPlayer
     }
 }

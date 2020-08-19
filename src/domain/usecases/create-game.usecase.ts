@@ -1,11 +1,14 @@
-import { v4 as uuidv4 } from 'uuid';
-import { GameInMemoryRepository } from '../../infra/game-in-memory-repository'
+import { v4 as uuidv4 } from 'uuid'
 import { Game } from '../game'
 import { Player } from '../player'
+import { GameRepository } from '../port/game-repository'
 
 type uuid = string
 
 export class CreateGame {
+
+    constructor (private repository: GameRepository) {
+    }
 
     execute(playersFromRequest: string[]): uuid {
         const id = uuidv4()
@@ -15,8 +18,7 @@ export class CreateGame {
             players.push(new Player(player))
         })
 
-        const repository = new GameInMemoryRepository()
-        const game = new Game(id, players, repository)
+        const game = new Game(id, players, this.repository)
         game.save()
 
         return id

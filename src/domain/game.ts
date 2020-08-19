@@ -10,7 +10,8 @@ export class Game {
         readonly repository: GameRepository) {
     }
 
-    setPlayersScore (pointsByRound: Map<Player, number>) {
+    setPlayersScore (pointsByRound: Map<Player, number>): void {
+        console.log('pointsByRound', pointsByRound)
         this.players.forEach((player: Player) => {
             player.updateScore(pointsByRound.get(player))
         })
