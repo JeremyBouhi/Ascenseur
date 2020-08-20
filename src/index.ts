@@ -1,38 +1,21 @@
-import { v4 as uuidv4 } from 'uuid'
-import { Game } from './domain/game'
-import { Player } from './domain/player'
-import { Referee } from './domain/referee'
-import { Round } from './domain/round'
-import { GameInMemoryRepository } from './infra/game-in-memory-repository'
+import { Express } from 'express'
+import * as express from 'express'
+import * as bodyParser from 'body-parser'
 
-const soso = new Player('soso')
-const arsi = new Player('arsi')
-const jeje = new Player('jeje')
-const referee = new Referee()
+const gameRoutes = require('./app/game.api')
 
-let game: Game
-const id = uuidv4()
-const repo = new GameInMemoryRepository()
-game = new Game(id, [soso, arsi, jeje], repo)
+export function createServer (): Express {
+    const app = express()
+    app.use(bodyParser.json())
+    return app
+}
 
-const bets = new Map<Player, number>()
-bets.set(soso, 1)
-bets.set(arsi, 0)
-bets.set(jeje, 1)
+export async function initServer (app: Express) {
 
-const round = new Round(game, referee)
-round.start(bets)
+    app.get('/', function (req, res) {
+        res.send('Saluuuut')
+    })
 
-const tricks = new Map<Player, number>()
-tricks.set(soso, 0)
-tricks.set(arsi, 0)
-tricks.set(jeje, 1)
-round.end(tricks)
-
-console.log(bets)
-
-
-console.log(soso.getScore())
-console.log(arsi.getScore())
-console.log(jeje.getScore())
+    app.use('/game', gameRoutes)
+}
 

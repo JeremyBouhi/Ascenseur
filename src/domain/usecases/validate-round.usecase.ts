@@ -1,11 +1,17 @@
 import { Game } from '../game'
 import { Player } from '../player'
+import { GameRepository } from '../port/game-repository'
 import { Referee } from '../referee'
 import { Round } from '../round'
 
 export class ValidateRound {
 
-    execute(game: Game, betsFromRequest: object[], tricksFromRequest: object[]): void {
+    constructor (private gameRepository: GameRepository) {
+    }
+
+    execute(idGame: string, betsFromRequest: object[], tricksFromRequest: object[]): void {
+        const game: Game = this.gameRepository.getGameById(idGame)
+
         const referee = new Referee()
         const round = new Round(game, referee)
 

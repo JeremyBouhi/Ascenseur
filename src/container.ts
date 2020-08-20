@@ -7,10 +7,8 @@ import { Config } from './config'
 
 export interface Container {
     GameRepository: GameRepository
-
     CreateGame: CreateGame
     ValidateRound: ValidateRound
-
     Config: Config
 }
 
@@ -35,7 +33,7 @@ export async function createContainer (config: Config): Promise<Lookup> {
 
     const gameRepository = new GameInMemoryRepository()
     const createGame = new CreateGame(gameRepository)
-    const validateRound = new ValidateRound()
+    const validateRound = new ValidateRound(gameRepository)
 
     const container: Container = {
         GameRepository: gameRepository,
