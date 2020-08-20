@@ -1,13 +1,13 @@
 import { config } from './config'
-import { createContainer } from './container'
+import { createContainer, Lookup } from './container'
 import { createServer, initServer } from './index'
 
 const server = createServer()
 const port = config.PORT || 8080
 
 createContainer(config)
-    .then(async () => {
-        await initServer(server)
+    .then(async (lookup: Lookup) => {
+        await initServer(server, lookup)
     })
     .then(() => start())
 

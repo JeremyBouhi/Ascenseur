@@ -1,8 +1,9 @@
 import { Express } from 'express'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
-
-const gameRoutes = require('./app/game.api')
+import { Lookup } from './container'
+import { CreateGame } from './domain/usecases/create-game.usecase'
+import { ValidateRound } from './domain/usecases/validate-round.usecase'
 
 export function createServer (): Express {
     const app = express()
@@ -10,12 +11,23 @@ export function createServer (): Express {
     return app
 }
 
-export async function initServer (app: Express) {
+export async function initServer (app: Express, lookup: Lookup) {
+    const createGame: CreateGame = lookup<CreateGame>('CreateGame')
+    const validateRound: ValidateRound = lookup<ValidateRound>('ValidateRound')
 
     app.get('/', function (req, res) {
         res.send('Saluuuut')
     })
 
-    app.use('/game', gameRoutes)
+    app.post('/', function (req, res) {
+        const id = createGame.execute(req.body["players"])
+        res.setHeader('Location', `/game/${id}`)
+        res.sendStatus(200)
+    })
+
+    app.post('/:id/round', function (req, res) {
+        validateRound.execute(req.params["id"], req.body["bets"], req.body["tricks"])
+        res.sendStatus(201)
+    })
 }
 
