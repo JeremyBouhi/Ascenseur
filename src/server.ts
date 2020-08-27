@@ -13,8 +13,9 @@ createContainer(config)
 
 async function start () {
     try {
-        server.listen(config.PORT)
-        console.info(`Server running on: ${port}`)
+        server.listen(port, () => {
+            console.log(`Serveur running at http://localhost:${port}`)
+        })
     } catch (e) {
         console.error(e, 'Could not start server')
         process.exit(1)

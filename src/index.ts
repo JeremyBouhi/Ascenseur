@@ -19,13 +19,13 @@ export async function initServer (app: Express, lookup: Lookup) {
         res.send('Saluuuut')
     })
 
-    app.post('/', function (req, res) {
+    app.post('game/', function (req, res) {
         const id = createGame.execute(req.body["players"])
         res.setHeader('Location', `/game/${id}`)
         res.sendStatus(200)
     })
 
-    app.post('/:id/round', function (req, res) {
+    app.post('game/:id/round', function (req, res) {
         validateRound.execute(req.params["id"], req.body["bets"], req.body["tricks"])
         res.sendStatus(201)
     })
