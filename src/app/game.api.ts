@@ -1,7 +1,7 @@
 import { Express } from 'express'
 import { Lookup } from '../container'
-import { CreateGame } from '../domain/usecases/create-game.usecase'
-import { ValidateRound } from '../domain/usecases/validate-round.usecase'
+import { CreateGame } from '../domain/usecase/create-game.usecase'
+import { FinishRound } from '../domain/usecase/finish-round.usecase'
 
 var express = require('express');
 var router = express.Router();
@@ -24,7 +24,7 @@ function createGame (app: Express, lookup: Lookup) {
 }
 
 function validateRound (app: Express, lookup: Lookup) {
-    const validateRound: ValidateRound = lookup<ValidateRound>('ValidateRound')
+    const validateRound: FinishRound = lookup<FinishRound>('ValidateRound')
 
     app.post('/:id/round', function (req, res) {
         validateRound.execute(req.params["id"], req.body["bets"], req.body["tricks"])

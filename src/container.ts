@@ -1,6 +1,7 @@
 import { GameRepository } from './domain/port/game-repository'
-import { CreateGame } from './domain/usecases/create-game.usecase'
-import { ValidateRound } from './domain/usecases/validate-round.usecase'
+import { IdService } from './domain/service/id.service'
+import { CreateGame } from './domain/usecase/create-game.usecase'
+import { FinishRound } from './domain/usecase/finish-round.usecase'
 import { GameInMemoryRepository } from './infra/game-in-memory-repository'
 import { Config } from './config'
 
@@ -8,7 +9,7 @@ import { Config } from './config'
 export interface Container {
     GameRepository: GameRepository
     CreateGame: CreateGame
-    ValidateRound: ValidateRound
+    ValidateRound: FinishRound
     Config: Config
 }
 
@@ -31,9 +32,10 @@ export async function createContainer (config: Config): Promise<Lookup> {
 
     let lookup: Lookup
 
+    const idService = new IdService()
     const gameRepository = new GameInMemoryRepository()
-    const createGame = new CreateGame(gameRepository)
-    const validateRound = new ValidateRound(gameRepository)
+    const createGame = new CreateGame(gameRepository, idService)
+    const validateRound = new FinishRound(gameRepository)
 
     const container: Container = {
         GameRepository: gameRepository,

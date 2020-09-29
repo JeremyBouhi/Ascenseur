@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from 'fs'
 import { Game } from '../domain/game'
 import { GameRepository } from '../domain/port/game-repository'
 
@@ -8,11 +8,21 @@ export class GameInMemoryRepository implements GameRepository {
 
     save (game: Game): void {
         const filePath = `games/${game.id}.json`
-        fs.writeFileSync(filePath, JSON.stringify(game), { flag: 'wx' })
+        fs.writeFileSync(filePath, JSON.stringify(game), { flag: 'w' })
     }
 
     getGameById (id: uuid): Game {
         const filePath = `games/${id}.json`
-        return JSON.parse(fs.readFileSync(filePath).toString()) as Game
+        const content = fs.readFileSync(filePath).toString()
+        let game: Game
+
+        try {
+            game = JSON.parse(content)
+        }
+        catch (e) {
+            console.error(e)
+        }
+
+        return game
     }
 }

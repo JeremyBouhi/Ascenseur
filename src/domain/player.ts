@@ -1,15 +1,17 @@
 export class Player {
-    private score: number
+    score: number
+    currentBet: number
 
     constructor (readonly name: string) {
         this.score = 0
+        this.currentBet = 0
     }
 
-    getScore(): number {
+    public getScore (): number {
         return this.score
     }
 
-    updateScore (points: number) {
+    public updateScore (points: number): void {
         this.score += points
     }
 }
