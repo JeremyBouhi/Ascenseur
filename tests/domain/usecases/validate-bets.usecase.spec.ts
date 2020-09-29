@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import { Bets } from '../../../src/domain/game'
-import { ValidateBetsUsecase } from '../../../src/domain/usecase/validate-bets.usecase'
+import { ValidateBets } from '../../../src/domain/usecase/validate-bets.usecase'
 import { GameInMemoryRepository } from '../../../src/infra/game-in-memory-repository'
 import { unDebutDePartie, unPartieApresQueChaqueJoueurAitMise } from '../../fixture/game.fixture'
 import { expect } from 'chai'
@@ -28,7 +28,7 @@ describe('ValidateBetsUsecase', () => {
         }
 
         // When
-        const validateBets = new ValidateBetsUsecase(gameRepository)
+        const validateBets = new ValidateBets(gameRepository)
         validateBets.execute(idGame, bets)
 
         // Then

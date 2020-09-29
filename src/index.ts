@@ -13,7 +13,7 @@ export function createServer (): Express {
 
 export async function initServer (app: Express, lookup: Lookup) {
     const createGame: CreateGame = lookup<CreateGame>('CreateGame')
-    const validateRound: FinishRound = lookup<FinishRound>('ValidateRound')
+    const finishRound: FinishRound = lookup<FinishRound>('FinishRound')
 
     app.get('/', function (req, res) {
         res.send('Saluuuut')
@@ -26,7 +26,7 @@ export async function initServer (app: Express, lookup: Lookup) {
     })
 
     app.post('/game/:id/round', function (req, res) {
-        validateRound.execute(req.params["id"], req.body["bets"], req.body["tricks"])
+        finishRound.execute(req.params["id"], req.body["tricks"])
         res.sendStatus(201)
     })
 }

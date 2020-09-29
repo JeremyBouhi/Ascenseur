@@ -1,7 +1,7 @@
 import { Bets, Game } from '../game'
 import { GameRepository } from '../port/game-repository'
 
-export class ValidateBetsUsecase {
+export class ValidateBets {
 
     constructor (private gameRepository: GameRepository) {
     }

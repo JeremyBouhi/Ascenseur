@@ -23,7 +23,8 @@ describe('FinishRoundUsecase', () => {
     it('enregistre les scores à la fin du round', () => {
         // Given
         const gameRepository = new GameInMemoryRepository()
-
+        const referee = new Referee()
+        const finishRound = new FinishRound(gameRepository, referee)
 
         const tricks: Tricks = {
             'stan': 0,
@@ -32,8 +33,6 @@ describe('FinishRoundUsecase', () => {
         }
 
         // When
-        const referee = new Referee()
-        const finishRound = new FinishRound(gameRepository, referee)
         finishRound.execute(idGame, tricks)
         const actualGame: Game = gameRepository.getGameById(idGame)
 
