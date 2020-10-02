@@ -6,12 +6,12 @@ import { PartieComponent } from './page/partie/partie.component'
 
 const routes: Routes = [
   {
-    path: 'partie',
+    path: 'game',
     component: PartieComponent,
     pathMatch: 'full'
   },
   {
-    path: 'accueil',
+    path: 'home',
     component: AccueilComponent,
     pathMatch: 'full'
   },

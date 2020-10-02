@@ -1,4 +1,5 @@
-import { ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,14 @@ import { AccueilComponent } from './page/accueil/accueil.component';
     AppComponent,
     PartieComponent,
     AccueilComponent
-  ], imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

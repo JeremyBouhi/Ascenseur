@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'
+import { StartGameApi } from '../../api/start-game.api'
 
 @Component({
   selector: 'app-accueil',
@@ -7,19 +7,18 @@ import { FormControl, FormGroup } from '@angular/forms'
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
-  joueursForm: FormGroup
+  joueurs: string[] = []
+  joueur1: string
+  joueur2: string
+  joueur3: string
 
-  constructor() { }
+  constructor(private startGame: StartGameApi) { }
 
   ngOnInit(): void {
-    this.joueursForm = new FormGroup({
-      joueur1: new FormControl('John Doe'),
-      joueur2: new FormControl('Mister X'),
-      joueur3: new FormControl('Anonymous')
-  })
   }
 
   commencerPartie () {
-    console.warn(this.joueursForm.value);
+    this.joueurs.push(this.joueur1, this.joueur2, this.joueur3)
+    this.startGame.execute(this.joueurs)
   }
 }

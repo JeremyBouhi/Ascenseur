@@ -1,24 +1,22 @@
 <h1>Bienvenue gringo (ou gringa)</h1>
 
-<form
-  [formGroup]="joueursForm"
-  (ngSubmit)="commencerPartie()"
->
-  <label>
-    Name:
-    <input type="text" formControlName="joueur1">
-  </label>
+<label>
+  Nom:
+  <input type="text"
+         [(ngModel)]="joueur1">
+</label>
 
-  <label>
-    Name:
-    <input type="text" formControlName="joueur2">
-  </label>
+<label>
+  Nom:
+  <input type="text"
+         [(ngModel)]="joueur2">
+</label>
 
-  <label>
-    Name:
-    <input type="text" formControlName="joueur3">
-  </label>
+<label>
+  Nom:
+  <input type="text"
+         [(ngModel)]="joueur3">
+</label>
 
-  <button type="submit">Commencer la partie</button>
-</form>
+<button type="submit" (click)="commencerPartie()">Commencer la partie</button>
 
