@@ -1,5 +1,6 @@
 import { Express } from 'express'
 import * as express from 'express'
+import * as cors from 'cors'
 import * as bodyParser from 'body-parser'
 import { Lookup } from './container'
 import { CreateGame } from './domain/usecase/create-game.usecase'
@@ -8,6 +9,7 @@ import { ValidateBets } from './domain/usecase/validate-bets.usecase'
 
 export function createServer (): Express {
     const app = express()
+    app.use(cors())
     app.use(bodyParser.json())
     return app
 }

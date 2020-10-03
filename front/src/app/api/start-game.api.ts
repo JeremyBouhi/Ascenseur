@@ -7,7 +7,8 @@ export class StartGameApi {
   }
 
   execute (joueurs: string[]): Promise<void> {
-    console.log(joueurs)
-    return this.httpClient.post<void>('http://localhost:8080/game', joueurs).toPromise()
+    return this.httpClient.post<void>('http://localhost:8080/game', {
+      players: joueurs
+    }).toPromise()
   }
 }
