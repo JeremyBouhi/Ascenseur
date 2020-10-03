@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StartGameApi } from '../../api/start-game.api'
+import { Router } from '@angular/router'
+import { StartGameApi } from '../../../api/creer-partie'
 
 @Component({
   selector: 'app-accueil',
@@ -12,7 +13,9 @@ export class AccueilComponent implements OnInit {
   joueur2: string
   joueur3: string
 
-  constructor(private startGame: StartGameApi) { }
+  constructor(
+    private router: Router,
+    private startGame: StartGameApi) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +23,6 @@ export class AccueilComponent implements OnInit {
   commencerPartie () {
     this.joueurs.push(this.joueur1, this.joueur2, this.joueur3)
     this.startGame.execute(this.joueurs)
+    this.router.navigateByUrl('/game')
   }
 }

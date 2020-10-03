@@ -25,7 +25,7 @@ export async function initServer (app: Express, lookup: Lookup) {
         const id = createGame.execute(req.body["players"])
 
         res.setHeader('Location', `/game/${id}`)
-        res.sendStatus(200)
+        res.sendStatus(201)
     })
 
     app.post('/game/:id/round/validate', function (req, res) {

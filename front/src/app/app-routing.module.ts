@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccueilComponent } from './page/accueil/accueil.component'
-import { PartieComponent } from './page/partie/partie.component'
+import { AccueilComponent } from './presentation/page/accueil/accueil.component'
+import { PartieComponent } from './presentation/page/partie/partie.component'
+import { PartieResolver } from './presentation/page/partie/partie.resolver'
 
 
 const routes: Routes = [
   {
-    path: 'game',
-    component: PartieComponent,
+    path: 'home',
+    component: AccueilComponent,
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: AccueilComponent,
+    path: 'game',
+    component: PartieComponent,
+    resolve: PartieResolver,
     pathMatch: 'full'
   },
   {

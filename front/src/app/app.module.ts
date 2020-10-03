@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PartieComponent } from './page/partie/partie.component';
-import { AccueilComponent } from './page/accueil/accueil.component';
+import { PartieComponent } from './presentation/page/partie/partie.component';
+import { AccueilComponent } from './presentation/page/accueil/accueil.component';
 
 @NgModule({
   declarations: [
