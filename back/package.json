@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "psql": "docker-compose exec ascenseurdb psql -U postgres -h localhost",
     "start": "ts-node src/server.ts",
     "build": "tsc",
     "test": "mocha --require ts-node/register tests/**/*.spec.ts",
