@@ -20,9 +20,10 @@ export class AccueilComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  commencerPartie () {
+  async commencerPartie () {
     this.joueurs.push(this.joueur1, this.joueur2, this.joueur3)
-    this.startGame.execute(this.joueurs)
-    this.router.navigateByUrl('/game')
+    const idGame: string = await this.startGame.execute(this.joueurs)
+    console.log(idGame)
+    this.router.navigateByUrl(`/game/${idGame}`)
   }
 }

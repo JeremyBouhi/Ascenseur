@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PartieComponent } from './presentation/page/partie/partie.component';
 import { AccueilComponent } from './presentation/page/accueil/accueil.component';
+import { PartieResolver } from './presentation/page/partie/partie.resolver'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AccueilComponent } from './presentation/page/accueil/accueil.component'
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [PartieResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

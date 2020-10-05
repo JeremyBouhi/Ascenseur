@@ -23,14 +23,17 @@ export async function initServer (app: Express, lookup: Lookup) {
     app.post('/game', function (req, res) {
         const createGame: CreateGame = lookup<CreateGame>('CreateGame')
         const id = createGame.execute(req.body["players"])
+        console.log(`Une nouvelle partie a été créée avec l‘id ${id}`)
 
-        res.setHeader('Location', `/game/${id}`)
-        res.sendStatus(201)
+        res.send(id).status(401)
     })
 
     app.post('/game/:id/round/validate', function (req, res) {
         const validateBets: ValidateBets = lookup<ValidateBets>('ValidateBets')
-        validateBets.execute(req.params["id"], req.body)
+        const id: string = req.params["id"]
+        validateBets.execute(id, req.body)
+        console.log(`Le round de la partie ${id} a été validé `)
+
         res.sendStatus(201)
     })
 

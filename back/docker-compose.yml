@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  ascenseurdb:
+    image: mdillon/postgis:11-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: jebo
+      POSTGRES_DB: ascenseur_db

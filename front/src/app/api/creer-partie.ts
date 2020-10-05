@@ -6,7 +6,8 @@ export class StartGameApi {
   constructor (private httpClient: HttpClient) {
   }
 
-  execute (joueurs: string[]): Promise<void> {
-    return this.httpClient.post<void>('http://localhost:8080/game', { players: joueurs }).toPromise()
+  execute (joueurs: string[]): Promise<string> {
+    const id = this.httpClient.post('http://localhost:8080/game', { players: joueurs }, {responseType: 'text'}).toPromise()
+    return id
   }
 }
